@@ -8,7 +8,7 @@ namespace Weather.API.Conrollers
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     [ApiVersion("1.0")]
-    public class DeviceController : ControllerBase
+    public class DevicesController : ControllerBase
     {
         [Route("{deviceId}/data/{date}/{sensorType}")]
         [HttpGet]
