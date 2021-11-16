@@ -12,6 +12,12 @@ The temporary files are saved in the format: /{{deviceId}}/{{sensorType}}/{{date
 
 The compressed file is stored according to the format: /{{deviceId}}/{{sensorType}}/historical.zip
 
+CSV file format: 
+- columns separated with ';'
+- always 2 columns
+- first column represents date and time in format yyyy-MM-ddThh:mm:ss
+- second column represents measured value, float with ',' as decimal separator, without leading zeros (for example value ',04' means 0,04)
+
 ## 1.2 PROBLEM
 
 The solution now needs to be complemented with a new service/program that exposes the information via a REST API to a second system. The new service must have the ability to run in Azure. The ideal goal for the API methods that the customer wishes to use as a minimum requirement to begin are listed below. Otherwise, the API is unrestricted. 
