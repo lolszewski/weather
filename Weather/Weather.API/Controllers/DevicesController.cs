@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace Weather.API.Conrollers
+namespace Weather.API.Controllers
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
