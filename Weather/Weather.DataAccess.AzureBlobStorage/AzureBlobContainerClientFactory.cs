@@ -1,15 +1,14 @@
 ﻿using Azure.Storage.Blobs;
-
 using Microsoft.Extensions.Configuration;
-using Weather.Infrastructure.Extensions;
+using Weather.DataAccess.AzureBlobStorage.Extensions;
 
-namespace Weather.Infrastructure
+namespace Weather.DataAccess.AzureBlobStorage
 {
-    public class BlobContainerClientFactory : IBlobContainerClientFactory
+    public class AzureBlobContainerClientFactory : IAzureBlobContainerClientFactory
     {
         private readonly IConfiguration _configuration;
 
-        public BlobContainerClientFactory(IConfiguration configuration)
+        public AzureBlobContainerClientFactory(IConfiguration configuration)
         {
             _configuration = configuration;
         }

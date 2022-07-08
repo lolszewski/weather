@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -9,8 +8,9 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-
-using Weather.Infrastructure;
+using Weather.Business.Extensions;
+using Weather.DataAccess.AzureBlobStorage.Extensions;
+using Weather.DataAccess.Extensions;
 
 namespace Weather.API
 {
@@ -48,7 +48,9 @@ namespace Weather.API
                 c.IncludeXmlComments(xmlPath);
             });
 
-            services.AddScoped<IBlobContainerClientFactory,BlobContainerClientFactory>();
+            services.AddAzureBlobStorageServices();
+            services.AddDataAccessServices();
+            services.AddBusinessServices();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -60,10 +62,7 @@ namespace Weather.API
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }
