@@ -15,8 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Weather.BusinessLogic\Weather.Business.csproj" />
-    <ProjectReference Include="..\Weather.Contracts\Weather.Contracts.csproj" />
+    <ProjectReference Include="..\Weather.Business\Weather.Business.csproj" />
     <ProjectReference Include="..\Weather.DataAccess.AzureBlobStorage\Weather.DataAccess.AzureBlobStorage.csproj" />
     <ProjectReference Include="..\Weather.DataAccess\Weather.DataAccess.csproj" />
   </ItemGroup>
