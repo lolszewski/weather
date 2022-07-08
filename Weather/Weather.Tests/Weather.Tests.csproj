@@ -20,12 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Weather.BusinessLogic\Weather.Business.csproj" />
     <ProjectReference Include="..\Weather.DataAccess\Weather.DataAccess.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Business\" />
   </ItemGroup>
 
 </Project>
