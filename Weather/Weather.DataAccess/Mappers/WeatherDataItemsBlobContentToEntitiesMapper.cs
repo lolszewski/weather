@@ -20,7 +20,7 @@ public class WeatherDataItemsBlobContentToEntitiesMapper : IWeatherDataItemsBlob
             .Where(line => !string.IsNullOrWhiteSpace(line))
             .Skip(skip)
             .Take(take)
-            .Select(l => ToWeatherDataItemEntity(deviceId, sensorType, l));
+            .Select(line => ToWeatherDataItemEntity(deviceId, sensorType, line));
     }
 
     private WeatherDataItemEntity ToWeatherDataItemEntity(string deviceId, string sensorType, string line)
