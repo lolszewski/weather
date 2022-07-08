@@ -19,17 +19,17 @@ public class WeatherDataItemsRepository : IWeatherDataItemsRepository
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<WeatherDataItemEntity>> GetDataItems(string deviceId, string sensorType, DateOnly date, int take = 100)
+    public async Task<IEnumerable<WeatherDataItemEntity>> GetDataItems(string deviceId, string sensorType, DateOnly date, int skip = 0, int take = 100)
     {
-        var dataItems = new List<WeatherDataItemEntity>();
+        var dataItems = new List<WeatherDataItemEntity>(take);
         var blobName = _blobNameResolver.Resolve(deviceId, sensorType, date);
 
         if (await _azureBlobRepository.Exists(blobName))
         {
             var content = await _azureBlobRepository.GetContent(blobName);
-            dataItems.AddRange(_mapper.Map(deviceId, sensorType, content));
+            dataItems.AddRange(_mapper.Map(deviceId, sensorType, content, skip, take));
         }
 
-        return dataItems.Take(take);
+        return dataItems;
     }
 }

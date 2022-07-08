@@ -7,7 +7,7 @@ namespace Weather.Business.Managers;
 
 public interface IWeatherDataItemsManager
 {
-    Task<IEnumerable<WeatherDataItemResource>> GetData(string deviceId, string sensorType, DateOnly date);
+    Task<IEnumerable<WeatherDataItemResource>> GetData(string deviceId, string sensorType, DateOnly date, int skip = 0, int take = 100);
 
-    Task<IEnumerable<WeatherDataItemResource>> GetData(string deviceId, DateOnly date);
+    Task<IEnumerable<WeatherDataItemResource>> GetData(string deviceId, DateOnly date, int skip = 0, int take = 100);
 }

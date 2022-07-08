@@ -24,4 +24,8 @@
     <ProjectReference Include="..\Weather.DataAccess\Weather.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Business\" />
+  </ItemGroup>
+
 </Project>

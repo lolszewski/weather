@@ -13,13 +13,13 @@ public class WeatherDataItemsBlobContentToEntitiesMapper : IWeatherDataItemsBlob
         _configuration = configuration;
     }
 
-    public IEnumerable<WeatherDataItemEntity> Map(string deviceId, string sensorType, string content)
+    public IEnumerable<WeatherDataItemEntity> Map(string deviceId, string sensorType, string content, int skip = 0, int take = 100)
     {
-        var strings = content
+        return content
             .Split(_configuration.GetWeatherDataLinesSeparator())
-            .Where(line => !string.IsNullOrWhiteSpace(line));
-
-        return strings
+            .Where(line => !string.IsNullOrWhiteSpace(line))
+            .Skip(skip)
+            .Take(take)
             .Select(l => ToWeatherDataItemEntity(deviceId, sensorType, l));
     }
 

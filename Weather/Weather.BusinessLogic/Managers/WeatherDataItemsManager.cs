@@ -23,18 +23,18 @@ public class WeatherDataItemsManager : IWeatherDataItemsManager
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<WeatherDataItemResource>> GetData(string deviceId, string sensorType, DateOnly date)
+    public async Task<IEnumerable<WeatherDataItemResource>> GetData(string deviceId, string sensorType, DateOnly date, int skip = 0, int take = 100)
     {
-        var entities = await _dataItemsRepository.GetDataItems(deviceId, sensorType, date);
+        var entities = await _dataItemsRepository.GetDataItems(deviceId, sensorType, date, skip, take);
         return entities.Select(_mapper.Map);
     }
 
-    public async Task<IEnumerable<WeatherDataItemResource>> GetData(string deviceId, DateOnly date)
+    public async Task<IEnumerable<WeatherDataItemResource>> GetData(string deviceId, DateOnly date, int skip = 0, int take = 100)
     {
         var metadata = await _metadataItemsRepository.GetData();
         var sensorTypes = metadata.Where(m => m.DeviceId == deviceId).Select(m => m.SensorType);
 
-        var tasks = sensorTypes.Select(sensorType => _dataItemsRepository.GetDataItems(deviceId, sensorType, date)).ToArray();
+        var tasks = sensorTypes.Select(sensorType => _dataItemsRepository.GetDataItems(deviceId, sensorType, date, skip, take)).ToArray();
         await Task.WhenAll(tasks);
 
         return tasks
