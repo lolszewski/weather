@@ -6,7 +6,9 @@ public static class AzureBlobStorageServiceCollectionExtensions
 {
     public static void AddAzureBlobStorageServices(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddScoped<IAzureBlobContainerClientFactory, AzureBlobContainerClientFactory>();
-        serviceCollection.AddScoped<IAzureBlobRepository, AzureBlobRepository>();
+        serviceCollection.AddSingleton<IAzureBlobContainerClientFactory, AzureBlobContainerClientFactory>();
+        serviceCollection.AddSingleton<IAzureBlobRepositoryWithNoCaching, AzureBlobRepositoryWithNoCaching>();
+        serviceCollection.AddSingleton<IAzureBlobRepositoryWithCaching, AzureBlobRepositoryWithCaching>();
+        serviceCollection.AddSingleton<IAzureBlobRepository, AzureBlobRepositoryWithCaching>();
     }
 }

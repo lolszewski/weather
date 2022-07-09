@@ -63,9 +63,9 @@ Please deliver several examples of unit tests.
 - You can use project in this repository as a starting point, but feel free to change anything you want or just create your own solution from scratch
 - We recommend to start with [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/#overview) (follow [this instruction](https://docs.microsoft.com/en-us/azure/vs-azure-tools-storage-manage-with-storage-explorer?tabs=windows#shared-access-signature-sas-connection-string) to connect to storage using provided connection string). Take few moments to explore the structure of the storage before you dig into writing the code.
 
-# 5 PROBLEMS THAT MAY BE SKIPPED
+# 5 PROBLEMS/IMPROVEMENTS
 
 - Archived items - should API include it?
 - Secure Design proinciples - secure input validation (injection attacks)?
-- API paging (skip, take)
 - Validations - deviceId/sensorType 404 errors base on metadata?
+- Blobs caching? Cache invalidation - how often? Memory increase problems? 

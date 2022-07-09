@@ -43,8 +43,8 @@ namespace Weather.API.Controllers
             [Required(AllowEmptyStrings = false)] string deviceId, 
             [Required(AllowEmptyStrings = false)] string sensorType, 
             [Required] DateTime date,
-            int skip = 0,
-            int take = 100)
+            [Range(0, int.MaxValue)] int skip = 0,
+            [Range(1, 500)] int take = 100)
         {
             return Ok(await _manager.GetData(deviceId, sensorType, new DateOnly(date.Year, date.Month, date.Day), skip, take));
         }
@@ -65,8 +65,8 @@ namespace Weather.API.Controllers
         public async Task<IActionResult> GetDataForDevice(
             [Required(AllowEmptyStrings = false)] string deviceId,
             [Required] DateTime date,
-            int skip = 0,
-            int take = 100)
+            [Range(0, int.MaxValue)] int skip = 0,
+            [Range(1, 500)] int take = 100)
         {
             return Ok(await _manager.GetData(deviceId, new DateOnly(date.Year, date.Month, date.Day), skip, take));
         }

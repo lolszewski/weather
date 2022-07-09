@@ -2,11 +2,11 @@
 
 namespace Weather.DataAccess.AzureBlobStorage;
 
-public class AzureBlobRepository : IAzureBlobRepository
+public class AzureBlobRepositoryWithNoCaching : IAzureBlobRepositoryWithNoCaching
 {
     private readonly BlobContainerClient _blobContainerClient;
 
-    public AzureBlobRepository(IAzureBlobContainerClientFactory azureBlobContainerClientFactory)
+    public AzureBlobRepositoryWithNoCaching(IAzureBlobContainerClientFactory azureBlobContainerClientFactory)
     {
         _blobContainerClient = azureBlobContainerClientFactory.CreateClient();
     }
