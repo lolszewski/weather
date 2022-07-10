@@ -10,5 +10,6 @@ public static class AzureBlobStorageServiceCollectionExtensions
         serviceCollection.AddSingleton<IAzureBlobRepositoryWithNoCaching, AzureBlobRepositoryWithNoCaching>();
         serviceCollection.AddSingleton<IAzureBlobRepositoryWithCaching, AzureBlobRepositoryWithCaching>();
         serviceCollection.AddSingleton<IAzureBlobRepository, AzureBlobRepositoryWithCaching>();
+        serviceCollection.AddSingleton<IAzureZippedBlobRepository, AzureZippedBlobRepository>();
     }
 }

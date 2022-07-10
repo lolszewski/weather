@@ -18,7 +18,7 @@ public class AzureBlobRepositoryWithCaching : IAzureBlobRepositoryWithCaching
         if (!_cache.TryGetValue(blobName, out var content))
         {
             content = await _azureBlobRepositoryWithNoCaching.GetContent(blobName);
-            _cache[blobName] = content;
+            _cache.TryAdd(blobName, content);
         }
 
         return content;
