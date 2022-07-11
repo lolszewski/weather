@@ -1,6 +1,5 @@
 ﻿using System.Collections.Concurrent;
 using System.IO.Compression;
-using Azure;
 using Azure.Storage.Blobs;
 
 namespace Weather.DataAccess.AzureBlobStorage;
@@ -23,26 +22,15 @@ public class AzureZippedBlobRepository : IAzureZippedBlobRepository
             result = new();
 
             var zip = await _blobContainerClient.GetBlobClient(blobName).DownloadStreamingAsync();
-            using (var stream = zip.Value.Content)
+            using (var archive = new ZipArchive(zip.Value.Content, ZipArchiveMode.Read))
             {
-                using (var memoryStream = new MemoryStream())
+                foreach (var entry in archive.Entries)
                 {
-                    await stream.CopyToAsync(memoryStream);
+                    await using var unzippedEntryStream = entry.Open();
+                    using var streamReader = new StreamReader(unzippedEntryStream);
+                    var content = await streamReader.ReadToEndAsync();
 
-                    var archive = new ZipArchive(memoryStream);
-
-                    foreach (ZipArchiveEntry entry in archive.Entries)
-                    {
-                        using (var unzippedEntryStream = entry.Open())
-                        {
-                            using (var streamReader = new StreamReader(unzippedEntryStream))
-                            {
-                                var content = await streamReader.ReadToEndAsync();
-
-                                result.Add(entry.Name, content);
-                            }
-                        }
-                    }
+                    result.Add(entry.Name, content);
                 }
             }
 
