@@ -12,6 +12,6 @@ public class WeatherDataItemEntity
 
     public string DeviceId { get; }
     public string SensorType { get; }
-    public DateTimeOffset Date { get; init; }
-    public decimal Value { get; init; }
+    public DateTimeOffset Date { get; }
+    public decimal Value { get; }
 }

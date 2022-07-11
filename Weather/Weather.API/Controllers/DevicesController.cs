@@ -34,6 +34,7 @@ namespace Weather.API.Controllers
         /// <param name="date">Date time - only year, month and day is included in data selection - i. e. 2019-01-10</param>
         /// <param name="skip">Number of data items to skip (0 by default)</param>
         /// <param name="take">Number of data items to take (100 by default)</param>
+        /// <response code="400">Bad request - when parameters are not valid</response>
         /// <response code="500">Server error - when infrastructure is not responding</response>
         /// <returns>List containing weather data items for given device, sensor and date</returns>
         [HttpGet]
@@ -57,6 +58,7 @@ namespace Weather.API.Controllers
         /// <param name="date">Date time - only year, month and day is included in data selection - i. e. 2019-01-10</param>
         /// <param name="skip">Number of data items to skip for each sensor (0 by default)</param>
         /// <param name="take">Number of data items to take for each sensor (100 by default)</param>
+        /// <response code="400">Bad request - when parameters are not valid</response>
         /// <response code="500">Server error - when infrastructure is not responding</response>
         /// <returns>List containing weather data items for given device and date</returns>
         [HttpGet]

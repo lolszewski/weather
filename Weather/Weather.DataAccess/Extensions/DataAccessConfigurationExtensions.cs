@@ -9,6 +9,7 @@ public static class DataAccessConfigurationExtensions
 
     public static string GetWeatherDataHistoricalItemsBlobNameTemplate(this IConfiguration configuration)
         => configuration["WeatherData:HistoricalItemsBlobNameTemplate"];
+
     public static string GetWeatherDataItemsBlobNameDateFormat(this IConfiguration configuration)
         => configuration["WeatherData:ItemsBlobNameDateFormat"];
 

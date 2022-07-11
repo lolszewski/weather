@@ -10,8 +10,10 @@ public static class DataAccessServiceCollectionExtensions
     {
         serviceCollection.AddScoped<IWeatherDataItemsBlobNameResolver, WeatherDataItemsBlobNameResolver>();
         serviceCollection.AddScoped<IWeatherDataHistoricalItemsBlobNameResolver, WeatherDataHistoricalItemsBlobNameResolver>();
+
         serviceCollection.AddScoped<IWeatherDataItemsBlobContentToEntitiesMapper, WeatherDataItemsBlobContentToEntitiesMapper>();
         serviceCollection.AddScoped<IWeatherMetadataBlobContentToEntitiesMapper, WeatherMetadataBlobContentToEntitiesMapper>();
+
         serviceCollection.AddScoped<IWeatherDataItemsRepository, WeatherDataItemsRepository>();
         serviceCollection.AddScoped<IWeatherMetadataItemsRepository, WeatherMetadataItemsRepository>();
     }

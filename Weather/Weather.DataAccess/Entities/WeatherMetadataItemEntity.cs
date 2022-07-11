@@ -8,7 +8,7 @@ public class WeatherMetadataItemEntity
         SensorType = sensorType;
     }
 
-    public string DeviceId { get; set; }
+    public string DeviceId { get; }
 
-    public string SensorType { get; set; }
+    public string SensorType { get; }
 }
